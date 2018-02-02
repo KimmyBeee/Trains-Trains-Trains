@@ -1,0 +1,8 @@
+.container	{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+#add-card {
+	margin-top: 25px;
+}
