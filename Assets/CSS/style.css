@@ -1,8 +1,27 @@
-.container	{
+.jumbotron 	{
 	float: none;
 	margin-left: auto;
 	margin-right: auto;
+	width: 740px;
+}
+
+.card	{
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 740px;
 }
 #add-card {
 	margin-top: 25px;
+}
+
+.form-group {
+	padding-left: 15px;
+	padding-right: 15px;
+
+}
+
+#submit-button {
+	margin-left: 15px;
+	margin-bottom: 15px;
 }

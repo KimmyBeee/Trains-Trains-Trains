@@ -77,10 +77,10 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey)	{
 	var nextTrain = moment().add(minutesAway, "minutes");
 		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
-	#
-
-
-})
+	$("#train-table > tbody").append("<tr><td>" + trainName + "<tr><td>" + destination + "<tr><td>" + frequency + "<tr><td>" + nextTrain + "<tr><td>" + minutesAway + "<tr><td>");
+}, function(errorObject) {
+	console.log("Errors handled: " + errorObject.code);
+});
 
 
 
