@@ -19,11 +19,15 @@ $("#submit").on("click", function(event)	{
 	var destination = $("#input-destination").val().trim();
 	var trainTime = $("#input-time").val().trim();
 	var frequency = $("#input-frequency").val().trim();
+
+//Convert train time to military time
+	var milTrainTime = trainTime.format("H:MM");
+	
 //Create local object to hold input info
 	var newTrain = {
 		name: trainName,
 		destination: destination,
-		time: trainTime,
+		time: milTrainTime,
 		frequency: frequency
 	};
 //Uploads the new train info to the database
@@ -42,3 +46,53 @@ $("#submit").on("click", function(event)	{
 	$("#input-time").val("");
 	$("#input-frequency").val("");
 });
+
+database.ref().on("child_added", function(childSnapshot, prevChildKey)	{
+
+	var trainName = childSnapshot.val().name;
+	var destination = childSnapshot.val().destination;
+	var milTrainTime = childSnapshot.val().time;
+	var frequency = childSnapshot.val().frequency;
+
+	console.log(trainName);
+	console.log(destination);
+	console.log(milTrainTime);
+	console.log(frequency);
+
+	var trainTimeConverted = moment(milTrainTime, "hh:mm").subtract(1, "years");
+		console.log(trainTimeConverted);
+
+	var currentTime = moment();
+		console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+	var timeDifference = moment().diff(moment(trainTimeConverted), "minutes");
+		console.log("DIFFERENCE IN TIME: " + timeDifference);
+
+	var timeRemainder = timeDifference % frequency;
+		console.log(timeRemainder);
+
+	var minutesAway = frequency - timeRemainder;
+		console.log("MINUTES TILL TRAIN: " + minutesAway);
+
+	var nextTrain = moment().add(minutesAway, "minutes");
+		console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+	#
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
